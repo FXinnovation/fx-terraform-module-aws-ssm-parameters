@@ -14,13 +14,17 @@ resource "random_string" "this" {
 module "standard" {
   source = "../../"
 
-  reboot_ec2_policy_name     = "tftestRebootEC2Policy${random_string.this.result}"
-  reboot_ec2_role_name       = "tftestRebootEC2Role${random_string.this.result}"
-  read_only_role_name        = "tftestReadOnlyRole${random_string.this.result}"
-  ec2_for_ssm_policy_name    = "tftestEC2ForSSMPolicy${random_string.this.result}"
-  ec2_for_docker_policy_name = "tftestEC2ForDockerPolicy${random_string.this.result}"
-  instance_profile_role_name = "tftestInstanceProfileRole${random_string.this.result}"
-  instance_profile_name      = "tftestInstanceProfileName${random_string.this.result}"
+  ssm_parameter_count               = 3
+  prefix                            = "tftestSsmParam${random_string.this.result}"
+  names                             = ["foo", "bar", "baz"]
+  types                             = ["String", "SecureString", "StringList"]
+  values                            = ["foo was here", "bar war here", "baz was here"]
+  kms_key_create                    = true
+  kms_key_name                      = "tftestSsmKmsKey${random_string.this.result}"
+  kms_key_alias_name                = "tftestKmsKeySsm${random_string.this.result}"
+  iam_policy_create                 = true
+  iam_policy_name_prefix_read_only  = "tftestPolicyReadSsm${random_string.this.result}"
+  iam_policy_name_prefix_read_write = "tftestPolicyWriteSsm${random_string.this.result}"
 
   tags {
     Name = "tftest"
