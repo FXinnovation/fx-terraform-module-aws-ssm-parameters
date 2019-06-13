@@ -42,7 +42,7 @@ resource "aws_kms_alias" "this" {
 }
 
 ####
-# IAM Instance Profile
+# IAM Policy
 ####
 
 data "aws_iam_policy_document" "read" {
@@ -59,9 +59,7 @@ data "aws_iam_policy_document" "read" {
       "ssm:GetParameters",
     ]
 
-    resources = [
-      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/${var.ssm_parameter_prefix}/var.names.*",
-    ]
+    resources = "${formatlist("arn:aws:ssm:*:%s:parameter/%s/%s", data.aws_caller_identity.current.account_id, var.ssm_parameter_prefix, var.names.*)}"
   }
 
   statement {
@@ -81,8 +79,9 @@ data "aws_iam_policy_document" "read" {
 }
 
 resource "aws_iam_policy" "read" {
-  count  = "${var.enabled && var.policy_create ? 1 : 0}"
-  name   = "${var.policy_name}"
-  path   = "${var.policy_path}"
-  policy = "${data.aws_iam_policy_document.read.json}"
+  count       = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+  name_prefix = "${var.iam_policy_name_prefix_read_only}"
+  path        = "${var.iam_policy_path}"
+  policy      = "${data.aws_iam_policy_document.read.json}"
+  description = "Read only policy to get access to ${var.prefix} SSM parameters."
 }
