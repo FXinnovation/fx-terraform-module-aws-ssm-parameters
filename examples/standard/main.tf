@@ -16,7 +16,7 @@ module "standard" {
 
   ssm_parameter_count               = 3
   prefix                            = "tftestSsmParam${random_string.this.result}"
-  names                             = ["foo", "bar", "baz"]
+  names                             = ["/foo", "/bar", "/baz"]
   types                             = ["String", "SecureString", "StringList"]
   values                            = ["foo was here", "bar war here", "baz was here"]
   kms_key_create                    = true

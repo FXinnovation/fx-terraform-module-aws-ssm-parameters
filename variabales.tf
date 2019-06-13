@@ -45,11 +45,6 @@ variable "values" {
   type        = "list"
 }
 
-variable "tiers" {
-  description = "List of tiers for parameters."
-  default     = []
-}
-
 variable "overwrite" {
   description = "Overwrite an existing parameter"
   default     = false
@@ -69,8 +64,13 @@ variable "kms_key_create" {
   default     = false
 }
 
+variable "kms_key_id" {
+  description = "ID of the kms key if toggle kms_key_create is disable."
+  default     = ""
+}
+
 variable "kms_key_arn" {
-  description = "Arn of the kms key if toggle kms_key_create is disable."
+  description = "ARN of the kms key if toggle kms_key_create is disable."
   default     = ""
 }
 

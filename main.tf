@@ -6,14 +6,13 @@ resource "aws_ssm_parameter" "this" {
   count = "${var.enabled ? var.ssm_parameter_count : 0}"
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
-  description = "${element(var.descriptions, count.index)}"
+  description = "${element(concat(var.descriptions, list("")), count.index)}"
   type        = "${element(var.types, count.index)}"
   value       = "${element(var.values, count.index)}"
-  tier        = "${element(var.tiers, count.index)}"
 
-  key_id          = "${var.kms_key_create ? aws_kms_key.this.arn : var.kms_key_arn}"
+  key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
   overwrite       = "${var.overwrite}"
-  allowed_pattern = "${element(var.allowed_patterns, count.index)}"
+  allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
 
   tags = "${merge(
     map("Terraform", "true"),
@@ -37,7 +36,7 @@ resource "aws_kms_key" "this" {
 resource "aws_kms_alias" "this" {
   count = "${var.enabled && var.kms_key_create ? 1 : 0}"
 
-  name          = "${var.kms_key_alias_name}"
+  name          = "alias/${var.kms_key_alias_name}"
   target_key_id = "${aws_kms_key.this.key_id}"
 }
 
@@ -59,7 +58,7 @@ data "aws_iam_policy_document" "read" {
       "ssm:GetParameters",
     ]
 
-    resources = "${formatlist("arn:aws:ssm:*:%s:parameter/%s/%s", data.aws_caller_identity.current.account_id, var.ssm_parameter_prefix, var.names.*)}"
+    resources = ["${formatlist("arn:aws:ssm:*:%s:parameter/%s/%s", data.aws_caller_identity.current.account_id, var.prefix, var.names)}"]
   }
 
   statement {
@@ -74,7 +73,7 @@ data "aws_iam_policy_document" "read" {
       "kms:DescribeKey",
     ]
 
-    resources = "${var.kms_key_create ? aws_kms_key.this.arn : var.kms_key_arn}"
+    resources = ["${var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, list("")), 0) : var.kms_key_arn}"]
   }
 }
 
