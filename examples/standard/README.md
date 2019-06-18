@@ -1,6 +1,6 @@
-# Common IAM Standard exemple
+# SSM parameters Standard exemple
 
-Create all the policies and roles
+Create SSM parameters, KMS key, and the policies
 
 ## Usage
 

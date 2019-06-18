@@ -46,7 +46,7 @@ resource "aws_kms_alias" "this" {
 
 data "aws_iam_policy_document" "read" {
   statement {
-    sid = "Allow${var.prefix}SSMParameterAccess"
+    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "read" {
   }
 
   statement {
-    sid = "Allow${var.prefix}SSMParameterKMSAccess"
+    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
@@ -79,7 +79,7 @@ data "aws_iam_policy_document" "read" {
 
 data "aws_iam_policy_document" "read_write" {
   statement {
-    sid = "Allow${var.prefix}SSMParameterAccess"
+    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "read_write" {
   }
 
   statement {
-    sid = "Allow${var.prefix}SSMParameterKMSAccess"
+    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
@@ -113,7 +113,8 @@ data "aws_iam_policy_document" "read_write" {
 }
 
 resource "aws_iam_policy" "read" {
-  count       = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+  count = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+
   name_prefix = "${var.iam_policy_name_prefix_read_only}"
   path        = "${var.iam_policy_path}"
   policy      = "${data.aws_iam_policy_document.read.json}"
@@ -121,7 +122,8 @@ resource "aws_iam_policy" "read" {
 }
 
 resource "aws_iam_policy" "read_write" {
-  count       = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+  count = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+
   name_prefix = "${var.iam_policy_name_prefix_read_write}"
   path        = "${var.iam_policy_path}"
   policy      = "${data.aws_iam_policy_document.read_write.json}"

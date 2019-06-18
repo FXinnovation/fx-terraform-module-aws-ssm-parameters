@@ -1,6 +1,6 @@
-# Common IAM Standard exemple
+# No policies with an external KMS key exemple
 
-Create all the policies and roles
+Create SSM parameters using an external KMS key and don't create policies
 
 ## Usage
 

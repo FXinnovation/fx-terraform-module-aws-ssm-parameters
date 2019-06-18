@@ -22,14 +22,14 @@ resource "aws_kms_alias" "this" {
   target_key_id = "${aws_kms_key.this.key_id}"
 }
 
-module "standard" {
+module "external_kms_no_policy" {
   source = "../../"
 
   ssm_parameter_count = 3
   prefix              = "tftestSsmParam${random_string.this.result}"
   names               = ["/foo", "/bar", "/baz"]
   types               = ["String", "SecureString", "StringList"]
-  values              = ["foo was here", "bar war here", "baz was here"]
+  values              = ["foo was here", "bar was here", "baz was here"]
   kms_key_create      = false
   kms_key_id          = "${aws_kms_alias.this.id}"
   kms_key_arn         = "${aws_kms_alias.this.arn}"

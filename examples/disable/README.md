@@ -1,6 +1,6 @@
-# Common IAM Standard exemple
+# SSM parameters disable exemple
 
-Create all the policies and roles
+Disable the module SSM parameters
 
 ## Usage
 

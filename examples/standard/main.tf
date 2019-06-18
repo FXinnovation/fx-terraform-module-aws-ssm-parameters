@@ -19,6 +19,8 @@ module "standard" {
   names                             = ["/foo", "/bar", "/baz"]
   types                             = ["String", "SecureString", "StringList"]
   values                            = ["foo was here", "bar war here", "baz was here"]
+  descriptions                      = ["Know if foo was there", "Know if bar was there", "Know if baz was there"]
+  allowed_pattern                   = ["", "", "[A-Za-z]"]
   kms_key_create                    = true
   kms_key_name                      = "tftestSsmKmsKey${random_string.this.result}"
   kms_key_alias_name                = "tftestKmsKeySsm${random_string.this.result}"
