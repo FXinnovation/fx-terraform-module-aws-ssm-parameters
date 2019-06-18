@@ -46,7 +46,7 @@ resource "aws_kms_alias" "this" {
 
 data "aws_iam_policy_document" "read" {
   statement {
-    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterAccess"
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "read" {
   }
 
   statement {
-    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterKMSAccess"
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
@@ -79,7 +79,7 @@ data "aws_iam_policy_document" "read" {
 
 data "aws_iam_policy_document" "read_write" {
   statement {
-    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterAccess"
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "read_write" {
   }
 
   statement {
-    sid = "Allow${replace(var.prefix, "/", ",")}SSMParameterKMSAccess"
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
