@@ -28,6 +28,9 @@ $ terraform apply
 | iam\_policy\_read\_only\_arn |  |
 | iam\_policy\_read\_only\_id |  |
 | iam\_policy\_read\_only\_path |  |
+| iam\_policy\_read\_write\_arn |  |
+| iam\_policy\_read\_write\_id |  |
+| iam\_policy\_read\_write\_path |  |
 | names |  |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

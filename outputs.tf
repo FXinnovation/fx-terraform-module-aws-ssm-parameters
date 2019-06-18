@@ -1,11 +1,11 @@
 output "arns" {
   description = "ARNs of SSM Parameters"
-  value       = "${compact(concat(aws_ssm_parameter.this.*.arn, list("")))}"
+  value       = "${compact(concat(aws_ssm_parameter.*.*.arn, list("")))}"
 }
 
 output "names" {
   description = "Names of SSM Parameters"
-  value       = "${compact(concat(aws_ssm_parameter.this.*.name, list("")))}"
+  value       = "${compact(concat(aws_ssm_parameter.*.*.name, list("")))}"
 }
 
 output "iam_policy_read_only_id" {

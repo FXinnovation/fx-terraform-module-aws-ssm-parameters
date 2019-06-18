@@ -2,8 +2,8 @@
 # SSM Parameters
 ####
 
-resource "aws_ssm_parameter" "this" {
-  count = "${var.enabled ? var.ssm_parameter_count : 0}"
+resource "aws_ssm_parameter" "overwrite" {
+  count = "${var.enabled && var.overwrite ? var.ssm_parameter_count : 0}"
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = "${element(concat(var.descriptions, list("")), count.index)}"
@@ -11,7 +11,24 @@ resource "aws_ssm_parameter" "this" {
   value       = "${element(var.values, count.index)}"
 
   key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
-  overwrite       = "${var.overwrite}"
+  overwrite       = true
+  allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
+
+  tags = "${merge(
+    map("Terraform", "true"),
+    var.tags
+  )}"
+}
+
+resource "aws_ssm_parameter" "no_overwrite" {
+  count = "${var.enabled && !var.overwrite ? var.ssm_parameter_count : 0}"
+
+  name        = "/${var.prefix}${element(var.names, count.index)}"
+  description = "${element(concat(var.descriptions, list("")), count.index)}"
+  type        = "${element(var.types, count.index)}"
+  value       = "${element(var.values, count.index)}"
+
+  key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
   allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
 
   tags = "${merge(
