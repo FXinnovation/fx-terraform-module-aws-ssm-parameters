@@ -1,6 +1,6 @@
 output "arns" {
   description = "ARNs of SSM Parameters"
-  value       = "${compact(concat(aws_ssm_parameter.overwrite.*.arn, aws_ssm_parameter.no_overwrite.*.arnlist("")))}"
+  value       = "${compact(concat(aws_ssm_parameter.overwrite.*.arn, aws_ssm_parameter.no_overwrite.*.arn, list("")))}"
 }
 
 output "names" {

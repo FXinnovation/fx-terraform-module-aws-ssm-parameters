@@ -1,6 +1,6 @@
 # SSM parameters Standard exemple
 
-Create SSM parameters, KMS key, and the policies
+Create SSM parameters, with an overwrite
 
 ## Usage
 

@@ -31,6 +31,12 @@ resource "aws_ssm_parameter" "no_overwrite" {
   key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
   allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
 
+  lifecycle {
+    ignore_changes = [
+      "value",
+    ]
+  }
+
   tags = "${merge(
     map("Terraform", "true"),
     var.tags
