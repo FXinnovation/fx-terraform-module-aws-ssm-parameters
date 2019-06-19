@@ -100,6 +100,24 @@ data "aws_iam_policy_document" "read" {
   }
 }
 
+data "aws_iam_policy_document" "read_no_kms" {
+  statement {
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
+
+    effect = "Allow"
+
+    actions = [
+      "ssm:DescribeAssociation",
+      "ssm:GetDocument",
+      "ssm:DescribeDocument",
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+    ]
+
+    resources = ["${formatlist("arn:aws:ssm:*:%s:parameter/%s%s", data.aws_caller_identity.current.account_id, var.prefix, var.names)}"]
+  }
+}
+
 data "aws_iam_policy_document" "read_write" {
   statement {
     sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
@@ -135,8 +153,27 @@ data "aws_iam_policy_document" "read_write" {
   }
 }
 
-resource "aws_iam_policy" "read" {
-  count = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+data "aws_iam_policy_document" "read_write_no_kms" {
+  statement {
+    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
+
+    effect = "Allow"
+
+    actions = [
+      "ssm:DescribeAssociation",
+      "ssm:GetDocument",
+      "ssm:DescribeDocument",
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:PutParameter",
+    ]
+
+    resources = ["${formatlist("arn:aws:ssm:*:%s:parameter/%s%s", data.aws_caller_identity.current.account_id, var.prefix, var.names)}"]
+  }
+}
+
+resource "aws_iam_policy" "read_kms" {
+  count = "${var.enabled && var.iam_policy_create && (var.kms_key_create || local.kms_key_needed) ? 1 : 0}"
 
   name_prefix = "${var.iam_policy_name_prefix_read_only}"
   path        = "${var.iam_policy_path}"
@@ -144,11 +181,29 @@ resource "aws_iam_policy" "read" {
   description = "Read only policy to get access to ${var.prefix} SSM parameters."
 }
 
-resource "aws_iam_policy" "read_write" {
-  count = "${var.enabled && var.iam_policy_create ? 1 : 0}"
+resource "aws_iam_policy" "read_write_kms" {
+  count = "${var.enabled && var.iam_policy_create && (var.kms_key_create || local.kms_key_needed) ? 1 : 0}"
 
   name_prefix = "${var.iam_policy_name_prefix_read_write}"
   path        = "${var.iam_policy_path}"
   policy      = "${data.aws_iam_policy_document.read_write.json}"
+  description = "Read write policy to get access to ${var.prefix} SSM parameters."
+}
+
+resource "aws_iam_policy" "read_no_kms" {
+  count = "${var.enabled && var.iam_policy_create && !var.kms_key_create && !local.kms_key_needed ? 1 : 0}"
+
+  name_prefix = "${var.iam_policy_name_prefix_read_only}"
+  path        = "${var.iam_policy_path}"
+  policy      = "${data.aws_iam_policy_document.read_no_kms.json}"
+  description = "Read only policy to get access to ${var.prefix} SSM parameters."
+}
+
+resource "aws_iam_policy" "read_write_no_kms" {
+  count = "${var.enabled && var.iam_policy_create && !var.kms_key_create && !local.kms_key_needed ? 1 : 0}"
+
+  name_prefix = "${var.iam_policy_name_prefix_read_write}"
+  path        = "${var.iam_policy_path}"
+  policy      = "${data.aws_iam_policy_document.read_write_no_kms.json}"
   description = "Read write policy to get access to ${var.prefix} SSM parameters."
 }

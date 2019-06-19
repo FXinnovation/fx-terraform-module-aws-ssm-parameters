@@ -31,8 +31,8 @@ module "external_kms_no_policy" {
   types               = ["String", "SecureString", "StringList"]
   values              = ["foo was here", "bar was here", "baz was here"]
   kms_key_create      = false
-  kms_key_id          = "${aws_kms_alias.this.id}"
-  kms_key_arn         = "${aws_kms_alias.this.arn}"
+  kms_key_id          = "${aws_kms_key.this.id}"
+  kms_key_arn         = "${aws_kms_key.this.arn}"
   iam_policy_create   = false
 
   tags {
