@@ -10,30 +10,30 @@ output "names" {
 
 output "iam_policy_read_only_id" {
   description = "ID of the read only policy"
-  value       = "${element(concat(aws_iam_policy.read.*.id, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_kms.*.id, aws_iam_policy.read_no_kms.*.id, list("")), 0)}"
 }
 
 output "iam_policy_read_only_arn" {
   description = "ARN of the read only policy"
-  value       = "${element(concat(aws_iam_policy.read.*.arn, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_kms.*.arn, aws_iam_policy.read_no_kms.*.arn, list("")), 0)}"
 }
 
 output "iam_policy_read_only_path" {
   description = "Path of the read only policy"
-  value       = "${element(concat(aws_iam_policy.read.*.path, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_kms.*.path, aws_iam_policy.read_no_kms.*.path, list("")), 0)}"
 }
 
 output "iam_policy_read_write_id" {
   description = "ID of the read write policy"
-  value       = "${element(concat(aws_iam_policy.read_write.*.id, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_write_kms.*.id, aws_iam_policy.read_write_no_kms.*.id, list("")), 0)}"
 }
 
 output "iam_policy_read_write_arn" {
   description = "ARN of the read write policy"
-  value       = "${element(concat(aws_iam_policy.read_write.*.arn, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_write_kms.*.arn, aws_iam_policy.read_write_no_kms.*.arn, list("")), 0)}"
 }
 
 output "iam_policy_read_write_path" {
   description = "Path of the read write policy"
-  value       = "${element(concat(aws_iam_policy.read_write.*.path, list("")), 0)}"
+  value       = "${element(concat(aws_iam_policy.read_write_kms.*.path, aws_iam_policy.read_write_no_kms.*.path, list("")), 0)}"
 }
