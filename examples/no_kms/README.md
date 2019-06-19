@@ -1,4 +1,4 @@
-# SSM parameters Standard exemple
+# SSM parameters Standard example
 
 Create SSM parameters, the policies and without kms
 

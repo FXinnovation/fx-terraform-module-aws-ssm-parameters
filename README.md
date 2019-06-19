@@ -5,7 +5,7 @@ Generic module to creates SSM Parameters for AWS.
 Notes
 -----
 Very important:
-It's not possible to convert a `SecureString` into a `String`/`StringList` a value. To do so, SSM parameter resource must be taint/destroy first
+It's not possible to convert `SecureString` into a `String`/`StringList` a value. To do so, SSM parameter resource must be taint/destroy first.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
