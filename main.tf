@@ -85,7 +85,7 @@ data "aws_iam_policy_document" "read" {
   }
 
   statement {
-    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterKMSAccess"
+    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
@@ -102,7 +102,7 @@ data "aws_iam_policy_document" "read" {
 
 data "aws_iam_policy_document" "read_no_kms" {
   statement {
-    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
+    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -120,7 +120,7 @@ data "aws_iam_policy_document" "read_no_kms" {
 
 data "aws_iam_policy_document" "read_write" {
   statement {
-    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
+    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
     effect = "Allow"
 
@@ -137,7 +137,7 @@ data "aws_iam_policy_document" "read_write" {
   }
 
   statement {
-    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterKMSAccess"
+    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
 
     effect = "Allow"
 
@@ -155,7 +155,7 @@ data "aws_iam_policy_document" "read_write" {
 
 data "aws_iam_policy_document" "read_write_no_kms" {
   statement {
-    sid = "Allow${replace(var.prefix, "/", "")}SSMParameterAccess"
+    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
     effect = "Allow"
 
