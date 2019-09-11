@@ -1,5 +1,6 @@
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
 locals {
-  kms_key_needed = "${contains(var.types, "SecureString")}"
+  kms_key_needed = contains(var.types, "SecureString")
 }

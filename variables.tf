@@ -13,7 +13,7 @@ variable "tags" {
 }
 
 #####
-# SSM parameters 
+# SSM parameters
 #####
 
 variable "ssm_parameter_count" {
@@ -22,12 +22,12 @@ variable "ssm_parameter_count" {
 
 variable "prefix" {
   description = "The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/]"
-  type        = "string"
+  type        = string
 }
 
 variable "names" {
   description = "List of names for parameters."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "descriptions" {
@@ -37,12 +37,12 @@ variable "descriptions" {
 
 variable "types" {
   description = "List of types for parameters."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "values" {
   description = "List of values for parameters."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "overwrite" {

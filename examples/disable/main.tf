@@ -1,8 +1,8 @@
 provider "aws" {
-  version    = "~> 2.2.0"
+  version    = "~> 2"
   region     = "eu-west-1"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 module "disable" {

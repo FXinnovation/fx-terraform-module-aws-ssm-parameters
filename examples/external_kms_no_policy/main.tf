@@ -1,8 +1,8 @@
 provider "aws" {
-  version    = "~> 2.2.0"
+  version    = "~> 2"
   region     = "eu-west-1"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 resource "random_string" "this" {
@@ -12,14 +12,16 @@ resource "random_string" "this" {
 }
 
 resource "aws_kms_key" "this" {
-  tags = "${merge(
-    map("Name", "tftestKmsKey${random_string.this.result}"),
-  )}"
+  tags = merge(
+    {
+      "Name" = "tftestKmsKey${random_string.this.result}"
+    },
+  )
 }
 
 resource "aws_kms_alias" "this" {
   name          = "alias/tftest${random_string.this.result}"
-  target_key_id = "${aws_kms_key.this.key_id}"
+  target_key_id = aws_kms_key.this.key_id
 }
 
 module "external_kms_no_policy" {
@@ -31,11 +33,11 @@ module "external_kms_no_policy" {
   types               = ["String", "SecureString", "StringList"]
   values              = ["foo was here", "bar was here", "baz was here"]
   kms_key_create      = false
-  kms_key_id          = "${aws_kms_key.this.id}"
-  kms_key_arn         = "${aws_kms_key.this.arn}"
+  kms_key_id          = aws_kms_key.this.id
+  kms_key_arn         = aws_kms_key.this.arn
   iam_policy_create   = false
 
-  tags {
+  tags = {
     Name = "tftest"
   }
 }

@@ -25,13 +25,13 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | kms\_key\_id | ID of the kms key if toggle kms_key_create is disable. | string | `""` | no |
 | kms\_key\_name | Name of the kms key if toggle kms_key_create is set | string | `""` | no |
 | kms\_tags | Tags that will be merged with variable tags for the kms key | map | `{}` | no |
-| names | List of names for parameters. | list | n/a | yes |
+| names | List of names for parameters. | list(string) | n/a | yes |
 | overwrite | Overwrite an existing parameter | string | `"false"` | no |
 | prefix | The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/] | string | n/a | yes |
 | ssm\_parameter\_count | Number of parameters to add | string | n/a | yes |
 | tags | Global tags for resources | map | `{}` | no |
-| types | List of types for parameters. | list | n/a | yes |
-| values | List of values for parameters. | list | n/a | yes |
+| types | List of types for parameters. | list(string) | n/a | yes |
+| values | List of values for parameters. | list(string) | n/a | yes |
 
 ## Outputs
 

@@ -1,8 +1,8 @@
 provider "aws" {
-  version    = "~> 2.2.0"
+  version    = "~> 2"
   region     = "eu-west-1"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 resource "random_string" "this" {
@@ -27,7 +27,7 @@ module "overwrite" {
   iam_policy_name_prefix_read_only  = "tftestPolicyReadSsm${random_string.this.result}"
   iam_policy_name_prefix_read_write = "tftestPolicyWriteSsm${random_string.this.result}"
 
-  tags {
+  tags = {
     Name = "tftest"
   }
 }
