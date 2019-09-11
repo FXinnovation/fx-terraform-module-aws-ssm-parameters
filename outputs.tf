@@ -8,11 +8,6 @@ output "aws_ssm_parameter_names" {
   value       = "${compact(concat(aws_ssm_parameter.overwrite.*.name, aws_ssm_parameter.no_overwrite.*.name, list("")))}"
 }
 
-output "aws_ssm_parameter_descriptions" {
-  description = "Descriptions of SSM parameters"
-  value       = "${compact(concat(aws_ssm_parameter.overwrite.*.description, aws_ssm_parameter.no_overwrite.*.description, list("")))}"
-}
-
 output "aws_ssm_parameter_types" {
   description = "Types of SSM parameters"
   value       = "${compact(concat(aws_ssm_parameter.overwrite.*.description, aws_ssm_parameter.no_overwrite.*.description, list("")))}"
