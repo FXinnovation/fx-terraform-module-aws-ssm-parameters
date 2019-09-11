@@ -10,7 +10,7 @@ output "aws_ssm_parameter_names" {
 
 output "aws_ssm_parameter_types" {
   description = "Types of SSM parameters"
-  value       = "${compact(concat(aws_ssm_parameter.overwrite.*.description, aws_ssm_parameter.no_overwrite.*.description, list("")))}"
+  value       = "${compact(concat(aws_ssm_parameter.overwrite.*.type, aws_ssm_parameter.no_overwrite.*.type, list("")))}"
 }
 
 output "aws_ssm_parameter_versions" {
