@@ -10,7 +10,7 @@ resource "aws_ssm_parameter" "overwrite" {
   type        = "${element(var.types, count.index)}"
   value       = "${element(var.values, count.index)}"
 
-  key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
+  key_id          = "${element(var.types, count.index) == "SecureString" ? (var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : ""}"
   overwrite       = true
   allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
 
@@ -21,14 +21,14 @@ resource "aws_ssm_parameter" "overwrite" {
 }
 
 resource "aws_ssm_parameter" "no_overwrite" {
-  count = "${var.enabled && !var.overwrite ? var.ssm_parameter_count : 0}"
+  count = "${var.enabled && ! var.overwrite ? var.ssm_parameter_count : 0}"
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = "${element(concat(var.descriptions, list("")), count.index)}"
   type        = "${element(var.types, count.index)}"
   value       = "${element(var.values, count.index)}"
 
-  key_id          = "${element(var.types, count.index) == "SecureString" ? ( var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : "" }"
+  key_id          = "${element(var.types, count.index) == "SecureString" ? (var.kms_key_create ? element(concat(aws_kms_key.this.*.id, list("")), 0) : var.kms_key_id) : ""}"
   allowed_pattern = "${element(concat(var.allowed_patterns, list("")), count.index)}"
 
   lifecycle {
@@ -191,7 +191,7 @@ resource "aws_iam_policy" "read_write_kms" {
 }
 
 resource "aws_iam_policy" "read_no_kms" {
-  count = "${var.enabled && var.iam_policy_create && !var.kms_key_create && !local.kms_key_needed ? 1 : 0}"
+  count = "${var.enabled && var.iam_policy_create && ! var.kms_key_create && ! local.kms_key_needed ? 1 : 0}"
 
   name_prefix = "${var.iam_policy_name_prefix_read_only}"
   path        = "${var.iam_policy_path}"
@@ -200,7 +200,7 @@ resource "aws_iam_policy" "read_no_kms" {
 }
 
 resource "aws_iam_policy" "read_write_no_kms" {
-  count = "${var.enabled && var.iam_policy_create && !var.kms_key_create && !local.kms_key_needed ? 1 : 0}"
+  count = "${var.enabled && var.iam_policy_create && ! var.kms_key_create && ! local.kms_key_needed ? 1 : 0}"
 
   name_prefix = "${var.iam_policy_name_prefix_read_write}"
   path        = "${var.iam_policy_path}"
