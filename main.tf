@@ -3,7 +3,7 @@
 ####
 
 resource "aws_ssm_parameter" "overwrite" {
-  count = var.enabled && var.overwrite ? var.ssm_parameter_count : 0
+  count = var.enabled && var.overwrite ? length(var.names) : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
@@ -23,7 +23,7 @@ resource "aws_ssm_parameter" "overwrite" {
 }
 
 resource "aws_ssm_parameter" "no_overwrite" {
-  count = var.enabled && false == var.overwrite ? var.ssm_parameter_count : 0
+  count = var.enabled && false == var.overwrite ? length(var.names) : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
@@ -107,14 +107,6 @@ data "aws_iam_policy_document" "read" {
       "kms:DescribeKey",
     ]
 
-    # TF-UPGRADE-TODO: In Terraform v0.10 and earlier, it was sometimes necessary to
-    # force an interpolation expression to be interpreted as a list by wrapping it
-    # in an extra set of list brackets. That form was supported for compatibility in
-    # v0.11, but is no longer supported in Terraform v0.12.
-    #
-    # If the expression in the following list itself returns a list, remove the
-    # brackets to avoid interpretation as a list of lists. If the expression
-    # returns a single list item then leave it as-is and remove this TODO comment.
     resources = [var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn]
   }
 }
@@ -178,14 +170,6 @@ data "aws_iam_policy_document" "read_write" {
       "kms:DescribeKey",
     ]
 
-    # TF-UPGRADE-TODO: In Terraform v0.10 and earlier, it was sometimes necessary to
-    # force an interpolation expression to be interpreted as a list by wrapping it
-    # in an extra set of list brackets. That form was supported for compatibility in
-    # v0.11, but is no longer supported in Terraform v0.12.
-    #
-    # If the expression in the following list itself returns a list, remove the
-    # brackets to avoid interpretation as a list of lists. If the expression
-    # returns a single list item then leave it as-is and remove this TODO comment.
     resources = [var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn]
   }
 }

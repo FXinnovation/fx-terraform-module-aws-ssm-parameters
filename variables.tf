@@ -16,10 +16,6 @@ variable "tags" {
 # SSM parameters
 #####
 
-variable "ssm_parameter_count" {
-  description = "Number of parameters to add"
-}
-
 variable "prefix" {
   description = "The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/]"
   type        = string

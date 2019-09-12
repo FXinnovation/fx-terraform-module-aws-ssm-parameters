@@ -28,7 +28,6 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | names | List of names for parameters. | list(string) | n/a | yes |
 | overwrite | Overwrite an existing parameter | string | `"false"` | no |
 | prefix | The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/] | string | n/a | yes |
-| ssm\_parameter\_count | Number of parameters to add | string | n/a | yes |
 | tags | Global tags for resources | map | `{}` | no |
 | types | List of types for parameters. | list(string) | n/a | yes |
 | values | List of values for parameters. | list(string) | n/a | yes |
