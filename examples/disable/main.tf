@@ -8,10 +8,9 @@ provider "aws" {
 module "disable" {
   source = "../../"
 
-  enabled             = false
-  ssm_parameter_count = 0
-  prefix              = ""
-  names               = []
-  types               = []
-  values              = []
+  enabled = false
+  prefix  = ""
+  names   = []
+  types   = []
+  values  = []
 }

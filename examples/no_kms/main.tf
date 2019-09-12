@@ -14,7 +14,6 @@ resource "random_string" "this" {
 module "no_kms" {
   source = "../../"
 
-  ssm_parameter_count               = 1
   prefix                            = "tftestSsmParam/${random_string.this.result}"
   names                             = ["/foo"]
   types                             = ["String"]
