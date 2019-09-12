@@ -1,41 +1,41 @@
-output "aws_ssm_parameter_arns" {
+output "arns" {
   description = "ARNs of SSM Parameters"
-  value       = "${module.external_kms_no_policy.aws_ssm_parameter_arns}"
+  value       = "${module.external_kms_no_policy.arns}"
 }
 
-output "aws_ssm_parameter_names" {
+output "names" {
   description = "Names of SSM Parameters"
-  value       = "${module.external_kms_no_policy.aws_ssm_parameter_names}"
+  value       = "${module.external_kms_no_policy.names}"
 }
 
-output "aws_ssm_parameter_types" {
+output "types" {
   description = "Types of SSM parameters"
-  value       = "${module.external_kms_no_policy.aws_ssm_parameter_types}"
+  value       = "${module.external_kms_no_policy.types}"
 }
 
-output "aws_ssm_parameter_versions" {
+output "versions" {
   description = "Versions of SSM parameters"
-  value       = "${module.external_kms_no_policy.aws_ssm_parameter_versions}"
+  value       = "${module.external_kms_no_policy.versions}"
 }
 
-output "aws_kms_key_arns" {
+output "kms_key_arns" {
   description = "The Amazon Resource Name (ARN) of the key"
-  value       = "${module.external_kms_no_policy.aws_kms_key_arns}"
+  value       = "${module.external_kms_no_policy.kms_key_arns}"
 }
 
-output "aws_kms_key_key_ids" {
+output "kms_key_key_ids" {
   description = "Globally unique identifier for the key"
-  value       = "${module.external_kms_no_policy.aws_kms_key_key_ids}"
+  value       = "${module.external_kms_no_policy.kms_key_key_ids}"
 }
 
-output "aws_kms_alias_arns" {
+output "kms_alias_arns" {
   description = "The Amazon Resource Name (ARN) of the key alias"
-  value       = "${module.external_kms_no_policy.aws_kms_alias_arns}"
+  value       = "${module.external_kms_no_policy.kms_alias_arns}"
 }
 
-output "aws_kms_alias_target_key_arn" {
+output "kms_alias_target_key_arn" {
   description = "The Amazon Resource Name (ARN) of the target key identifier"
-  value       = "${module.external_kms_no_policy.aws_kms_alias_target_key_arn}"
+  value       = "${module.external_kms_no_policy.kms_alias_target_key_arn}"
 }
 
 output "iam_policy_read_only_id" {

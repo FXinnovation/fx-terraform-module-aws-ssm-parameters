@@ -1,41 +1,41 @@
-output "aws_ssm_parameter_arns" {
+output "arns" {
   description = "ARNs of SSM Parameters"
-  value       = "${module.overwrite.aws_ssm_parameter_arns}"
+  value       = "${module.overwrite.arns}"
 }
 
-output "aws_ssm_parameter_names" {
+output "names" {
   description = "Names of SSM Parameters"
-  value       = "${module.overwrite.aws_ssm_parameter_names}"
+  value       = "${module.overwrite.names}"
 }
 
-output "aws_ssm_parameter_types" {
+output "types" {
   description = "Types of SSM parameters"
-  value       = "${module.overwrite.aws_ssm_parameter_types}"
+  value       = "${module.overwrite.types}"
 }
 
-output "aws_ssm_parameter_versions" {
+output "versions" {
   description = "Versions of SSM parameters"
-  value       = "${module.overwrite.aws_ssm_parameter_versions}"
+  value       = "${module.overwrite.versions}"
 }
 
-output "aws_kms_key_arns" {
+output "kms_key_arns" {
   description = "The Amazon Resource Name (ARN) of the key"
-  value       = "${module.overwrite.aws_kms_key_arns}"
+  value       = "${module.overwrite.kms_key_arns}"
 }
 
-output "aws_kms_key_key_ids" {
+output "kms_key_key_ids" {
   description = "Globally unique identifier for the key"
-  value       = "${module.overwrite.aws_kms_key_key_ids}"
+  value       = "${module.overwrite.kms_key_key_ids}"
 }
 
-output "aws_kms_alias_arns" {
+output "kms_alias_arns" {
   description = "The Amazon Resource Name (ARN) of the key alias"
-  value       = "${module.overwrite.aws_kms_alias_arns}"
+  value       = "${module.overwrite.kms_alias_arns}"
 }
 
-output "aws_kms_alias_target_key_arn" {
+output "kms_alias_target_key_arn" {
   description = "The Amazon Resource Name (ARN) of the target key identifier"
-  value       = "${module.overwrite.aws_kms_alias_target_key_arn}"
+  value       = "${module.overwrite.kms_alias_target_key_arn}"
 }
 
 output "iam_policy_read_only_id" {
