@@ -199,7 +199,7 @@ data "aws_iam_policy_document" "read_write_no_kms" {
 }
 
 resource "aws_iam_policy" "read_kms" {
-  count = var.enabled && var.iam_policy_create && var.kms_key_create || local.kms_key_needed ? 1 : 0
+  count = var.enabled && var.iam_policy_create && (var.kms_key_create || local.kms_key_needed) ? 1 : 0
 
   name_prefix = var.iam_policy_name_prefix_read_only
   path        = var.iam_policy_path
@@ -208,7 +208,7 @@ resource "aws_iam_policy" "read_kms" {
 }
 
 resource "aws_iam_policy" "read_write_kms" {
-  count = var.enabled && var.iam_policy_create && var.kms_key_create || local.kms_key_needed ? 1 : 0
+  count = var.enabled && var.iam_policy_create && (var.kms_key_create || local.kms_key_needed) ? 1 : 0
 
   name_prefix = var.iam_policy_name_prefix_read_write
   path        = var.iam_policy_path
