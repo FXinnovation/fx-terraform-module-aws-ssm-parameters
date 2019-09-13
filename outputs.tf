@@ -23,7 +23,7 @@ output "kms_key_arns" {
   value       = "${compact(concat(aws_kms_key.this.*.arn, list("")))}"
 }
 
-output "kms_key_key_ids" {
+output "kms_key_ids" {
   description = "Globally unique identifier for the key"
   value       = "${compact(concat(aws_kms_key.this.*.key_id, list("")))}"
 }

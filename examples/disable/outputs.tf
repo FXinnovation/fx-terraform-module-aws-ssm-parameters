@@ -23,9 +23,9 @@ output "kms_key_arns" {
   value       = "${module.disable.kms_key_arns}"
 }
 
-output "kms_key_key_ids" {
+output "kms_key_ids" {
   description = "Globally unique identifier for the key"
-  value       = "${module.disable.kms_key_key_ids}"
+  value       = "${module.disable.kms_key_ids}"
 }
 
 output "kms_alias_arns" {
