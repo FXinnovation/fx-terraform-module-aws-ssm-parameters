@@ -1,31 +1,99 @@
 output "arns" {
-  value = "${module.no_kms.arns}"
+  description = "ARNs of SSM Parameters"
+  value       = "${module.no_kms.arns}"
 }
 
 output "names" {
-  value = "${module.no_kms.names}"
+  description = "Names of SSM Parameters"
+  value       = "${module.no_kms.names}"
+}
+
+output "types" {
+  description = "Types of SSM parameters"
+  value       = "${module.no_kms.types}"
+}
+
+output "versions" {
+  description = "Versions of SSM parameters"
+  value       = "${module.no_kms.versions}"
+}
+
+output "kms_key_arns" {
+  description = "The Amazon Resource Name (ARN) of the key"
+  value       = "${module.no_kms.kms_key_arns}"
+}
+
+output "kms_key_ids" {
+  description = "Globally unique identifier for the key"
+  value       = "${module.no_kms.kms_key_ids}"
+}
+
+output "kms_alias_arns" {
+  description = "The Amazon Resource Name (ARN) of the key alias"
+  value       = "${module.no_kms.kms_alias_arns}"
+}
+
+output "kms_alias_target_key_arn" {
+  description = "The Amazon Resource Name (ARN) of the target key identifier"
+  value       = "${module.no_kms.kms_alias_target_key_arn}"
 }
 
 output "iam_policy_read_only_id" {
-  value = "${module.no_kms.iam_policy_read_only_id}"
+  description = "ID of the read only policy"
+  value       = "${module.no_kms.iam_policy_read_only_id}"
 }
 
 output "iam_policy_read_only_arn" {
-  value = "${module.no_kms.iam_policy_read_only_arn}"
+  description = "ARN of the read only policy"
+  value       = "${module.no_kms.iam_policy_read_only_arn}"
+}
+
+output "iam_policy_read_only_description" {
+  description = "The description of the read only policy"
+  value       = "${module.no_kms.iam_policy_read_only_description}"
+}
+
+output "iam_policy_read_only_name" {
+  description = "The name of the read only policy"
+  value       = "${module.no_kms.iam_policy_read_only_name}"
 }
 
 output "iam_policy_read_only_path" {
-  value = "${module.no_kms.iam_policy_read_only_path}"
+  description = "Path of the read only policy"
+  value       = "${module.no_kms.iam_policy_read_only_path}"
+}
+
+output "iam_policy_read_only_policy" {
+  description = "The policy document"
+  value       = "${module.no_kms.iam_policy_read_only_policy}"
 }
 
 output "iam_policy_read_write_id" {
-  value = "${module.no_kms.iam_policy_read_write_id}"
+  description = "ID of the read write policy"
+  value       = "${module.no_kms.iam_policy_read_write_id}"
 }
 
 output "iam_policy_read_write_arn" {
-  value = "${module.no_kms.iam_policy_read_write_arn}"
+  description = "ARN of the read write policy"
+  value       = "${module.no_kms.iam_policy_read_write_arn}"
+}
+
+output "iam_policy_read_write_description" {
+  description = "The description of the read write policy"
+  value       = "${module.no_kms.iam_policy_read_write_description}"
+}
+
+output "iam_policy_read_write_name" {
+  description = "The name of the read write policy"
+  value       = "${module.no_kms.iam_policy_read_write_name}"
 }
 
 output "iam_policy_read_write_path" {
-  value = "${module.no_kms.iam_policy_read_write_path}"
+  description = "Path of the read write policy"
+  value       = "${module.no_kms.iam_policy_read_write_path}"
+}
+
+output "iam_policy_read_write_policy" {
+  description = "The policy document"
+  value       = "${module.no_kms.iam_policy_read_write_policy}"
 }
