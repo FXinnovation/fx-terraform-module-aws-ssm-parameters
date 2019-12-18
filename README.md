@@ -38,11 +38,23 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 |------|-------------|
 | arns | ARNs of SSM Parameters |
 | iam\_policy\_read\_only\_arn | ARN of the read only policy |
+| iam\_policy\_read\_only\_description | The description of the read only policy |
 | iam\_policy\_read\_only\_id | ID of the read only policy |
+| iam\_policy\_read\_only\_name | The name of the read only policy |
 | iam\_policy\_read\_only\_path | Path of the read only policy |
+| iam\_policy\_read\_only\_policy | The policy document |
 | iam\_policy\_read\_write\_arn | ARN of the read write policy |
+| iam\_policy\_read\_write\_description | The description of the read write policy |
 | iam\_policy\_read\_write\_id | ID of the read write policy |
+| iam\_policy\_read\_write\_name | The name of the read write policy |
 | iam\_policy\_read\_write\_path | Path of the read write policy |
+| iam\_policy\_read\_write\_policy | The policy document |
+| kms\_alias\_arns | The Amazon Resource Name (ARN) of the key alias |
+| kms\_alias\_target\_key\_arn | The Amazon Resource Name (ARN) of the target key identifier |
+| kms\_key\_arns | The Amazon Resource Name (ARN) of the key |
+| kms\_key\_ids | Globally unique identifier for the key |
 | names | Names of SSM Parameters |
+| types | Types of SSM parameters |
+| versions | Versions of SSM parameters |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
