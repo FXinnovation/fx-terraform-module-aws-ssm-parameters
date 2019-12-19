@@ -26,11 +26,23 @@ $ terraform apply
 |------|-------------|
 | arns |  |
 | iam\_policy\_read\_only\_arn |  |
+| iam\_policy\_read\_only\_description |  |
 | iam\_policy\_read\_only\_id |  |
+| iam\_policy\_read\_only\_name |  |
 | iam\_policy\_read\_only\_path |  |
+| iam\_policy\_read\_only\_policy |  |
 | iam\_policy\_read\_write\_arn |  |
+| iam\_policy\_read\_write\_description |  |
 | iam\_policy\_read\_write\_id |  |
+| iam\_policy\_read\_write\_name |  |
 | iam\_policy\_read\_write\_path |  |
+| iam\_policy\_read\_write\_policy |  |
+| kms\_alias\_arns |  |
+| kms\_alias\_target\_key\_arn |  |
+| kms\_key\_arns |  |
+| kms\_key\_ids |  |
 | names |  |
+| types |  |
+| versions |  |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
