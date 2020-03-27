@@ -13,36 +13,42 @@ $ terraform apply
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| random | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| access\_key | Credentials: AWS access key. | string | n/a | yes |
-| secret\_key | Credentials: AWS secret key. Pass this as a variable, never write password in the code. | string | n/a | yes |
+|------|-------------|------|---------|:-----:|
+| access\_key | Credentials: AWS access key. | `string` | n/a | yes |
+| secret\_key | Credentials: AWS secret key. Pass this as a variable, never write password in the code. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| arns |  |
-| iam\_policy\_read\_only\_arn |  |
-| iam\_policy\_read\_only\_description |  |
-| iam\_policy\_read\_only\_id |  |
-| iam\_policy\_read\_only\_name |  |
-| iam\_policy\_read\_only\_path |  |
-| iam\_policy\_read\_only\_policy |  |
-| iam\_policy\_read\_write\_arn |  |
-| iam\_policy\_read\_write\_description |  |
-| iam\_policy\_read\_write\_id |  |
-| iam\_policy\_read\_write\_name |  |
-| iam\_policy\_read\_write\_path |  |
-| iam\_policy\_read\_write\_policy |  |
-| kms\_alias\_arns |  |
-| kms\_alias\_target\_key\_arn |  |
-| kms\_key\_arns |  |
-| kms\_key\_ids |  |
-| names |  |
-| types |  |
-| versions |  |
+| arns | n/a |
+| iam\_policy\_read\_only\_arn | n/a |
+| iam\_policy\_read\_only\_description | n/a |
+| iam\_policy\_read\_only\_id | n/a |
+| iam\_policy\_read\_only\_name | n/a |
+| iam\_policy\_read\_only\_path | n/a |
+| iam\_policy\_read\_only\_policy | n/a |
+| iam\_policy\_read\_write\_arn | n/a |
+| iam\_policy\_read\_write\_description | n/a |
+| iam\_policy\_read\_write\_id | n/a |
+| iam\_policy\_read\_write\_name | n/a |
+| iam\_policy\_read\_write\_path | n/a |
+| iam\_policy\_read\_write\_policy | n/a |
+| kms\_alias\_arns | n/a |
+| kms\_alias\_target\_key\_arn | n/a |
+| kms\_key\_arns | n/a |
+| kms\_key\_ids | n/a |
+| names | n/a |
+| types | n/a |
+| versions | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
