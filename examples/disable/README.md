@@ -41,10 +41,10 @@ No provider.
 | iam\_policy\_read\_write\_name | n/a |
 | iam\_policy\_read\_write\_path | n/a |
 | iam\_policy\_read\_write\_policy | n/a |
-| kms\_alias\_arns | n/a |
+| kms\_alias\_arn | n/a |
 | kms\_alias\_target\_key\_arn | n/a |
-| kms\_key\_arns | n/a |
-| kms\_key\_ids | n/a |
+| kms\_key\_arn | n/a |
+| kms\_key\_id | n/a |
 | names | n/a |
 | types | n/a |
 | versions | n/a |

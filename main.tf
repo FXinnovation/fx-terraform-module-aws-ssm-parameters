@@ -10,7 +10,7 @@ resource "aws_ssm_parameter" "overwrite" {
   type        = element(var.types, count.index)
   value       = element(var.values, count.index)
 
-  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id != null ? var.kms_key_id : null : null
+  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id != "" ? var.kms_key_id : null : null
   overwrite       = true
   allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
 
@@ -46,7 +46,7 @@ resource "aws_ssm_parameter" "no_overwrite" {
 }
 
 resource "aws_kms_key" "this" {
-  count = var.enabled && var.kms_key_create ? 1 : 0
+  count = var.enabled && var.kms_key_create && ! var.use_default_kms_key ? 1 : 0
 
   description = "KMS Key for ${var.prefix} SSM secure strings parameters encryption."
 
@@ -63,7 +63,7 @@ resource "aws_kms_key" "this" {
 }
 
 resource "aws_kms_alias" "this" {
-  count = var.enabled && var.kms_key_create ? 1 : 0
+  count = var.enabled && var.kms_key_create && ! var.use_default_kms_key ? 1 : 0
 
   name          = "alias/${var.kms_key_alias_name}"
   target_key_id = aws_kms_key.this[0].key_id
@@ -73,7 +73,11 @@ resource "aws_kms_alias" "this" {
 # IAM Policy
 ####
 
-data "aws_iam_policy_document" "read" {
+data "aws_iam_policy_document" "read_only" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
+
+  source_json = local.kms_key_needed ? element(concat(data.aws_iam_policy_document.kms_key_read_only.*.json, [""]), 0) : null
+
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
@@ -94,6 +98,10 @@ data "aws_iam_policy_document" "read" {
       var.names,
     )
   }
+}
+
+data "aws_iam_policy_document" "kms_key_read_only" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
@@ -111,30 +119,10 @@ data "aws_iam_policy_document" "read" {
   }
 }
 
-data "aws_iam_policy_document" "read_no_kms" {
-  statement {
-    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
-
-    effect = "Allow"
-
-    actions = [
-      "ssm:DescribeAssociation",
-      "ssm:GetDocument",
-      "ssm:DescribeDocument",
-      "ssm:GetParameter",
-      "ssm:GetParameters",
-    ]
-
-    resources = formatlist(
-      "arn:aws:ssm:*:%s:parameter/%s%s",
-      data.aws_caller_identity.current.account_id,
-      var.prefix,
-      var.names,
-    )
-  }
-}
-
 data "aws_iam_policy_document" "read_write" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
+
+  source_json = local.kms_key_needed ? element(concat(data.aws_iam_policy_document.kms_key_read_write.*.json, [""]), 0) : null
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
@@ -156,6 +144,10 @@ data "aws_iam_policy_document" "read_write" {
       var.names,
     )
   }
+}
+
+data "aws_iam_policy_document" "kms_key_read_write" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
@@ -174,62 +166,21 @@ data "aws_iam_policy_document" "read_write" {
   }
 }
 
-data "aws_iam_policy_document" "read_write_no_kms" {
-  statement {
-    sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
-    effect = "Allow"
-
-    actions = [
-      "ssm:DescribeAssociation",
-      "ssm:GetDocument",
-      "ssm:DescribeDocument",
-      "ssm:GetParameter",
-      "ssm:GetParameters",
-      "ssm:PutParameter",
-    ]
-
-    resources = formatlist(
-      "arn:aws:ssm:*:%s:parameter/%s%s",
-      data.aws_caller_identity.current.account_id,
-      var.prefix,
-      var.names,
-    )
-  }
-}
-
-resource "aws_iam_policy" "read_kms" {
-  count = var.enabled && var.iam_policy_create && (var.kms_key_create || var.kms_key_id != "") ? 1 : 0
+resource "aws_iam_policy" "read_only" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
 
   name_prefix = var.iam_policy_name_prefix_read_only
   path        = var.iam_policy_path
-  policy      = data.aws_iam_policy_document.read.json
+  policy      = element(concat(data.aws_iam_policy_document.read_only.*.json, [""]), 0)
   description = "Read only policy to get access to ${var.prefix} SSM parameters."
 }
 
-resource "aws_iam_policy" "read_write_kms" {
-  count = var.enabled && var.iam_policy_create && (var.kms_key_create || var.kms_key_id != "") ? 1 : 0
+resource "aws_iam_policy" "read_write" {
+  count = var.enabled && var.iam_policy_create ? 1 : 0
 
   name_prefix = var.iam_policy_name_prefix_read_write
   path        = var.iam_policy_path
-  policy      = data.aws_iam_policy_document.read_write.json
-  description = "Read write policy to get access to ${var.prefix} SSM parameters."
-}
-
-resource "aws_iam_policy" "read_no_kms" {
-  count = var.enabled && var.iam_policy_create && false == var.kms_key_create && var.kms_key_id == "" ? 1 : 0
-
-  name_prefix = var.iam_policy_name_prefix_read_only
-  path        = var.iam_policy_path
-  policy      = data.aws_iam_policy_document.read_no_kms.json
-  description = "Read only policy to get access to ${var.prefix} SSM parameters."
-}
-
-resource "aws_iam_policy" "read_write_no_kms" {
-  count = var.enabled && var.iam_policy_create && false == var.kms_key_create && var.kms_key_id == "" ? 1 : 0
-
-  name_prefix = var.iam_policy_name_prefix_read_write
-  path        = var.iam_policy_path
-  policy      = data.aws_iam_policy_document.read_write_no_kms.json
+  policy      = element(concat(data.aws_iam_policy_document.read_write.*.json, [""]), 0)
   description = "Read write policy to get access to ${var.prefix} SSM parameters."
 }

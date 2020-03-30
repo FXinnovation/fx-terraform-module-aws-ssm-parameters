@@ -34,7 +34,7 @@ module "external_kms_no_policy" {
   kms_key_create    = false
   kms_key_id        = aws_kms_key.this.id
   kms_key_arn       = aws_kms_key.this.arn
-  iam_policy_create = false
+  iam_policy_create = true
 
   tags = {
     Name = "tftest"

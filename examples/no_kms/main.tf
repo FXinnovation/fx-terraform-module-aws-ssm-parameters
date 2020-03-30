@@ -15,11 +15,12 @@ module "no_kms" {
   source = "../../"
 
   prefix                            = "tftestSsmParam/${random_string.this.result}"
-  names                             = ["/foo"]
-  types                             = ["String"]
-  values                            = ["foo was here"]
-  descriptions                      = ["Know if foo was there"]
+  names                             = ["/foo", "/bar"]
+  types                             = ["String", "SecureString"]
+  values                            = ["foo was here", "bar was here"]
+  descriptions                      = ["Know if foo was there", "Know if bar was there"]
   kms_key_create                    = false
+  use_default_kms_key               = true
   iam_policy_create                 = true
   iam_policy_name_prefix_read_only  = "tftestPolicyReadSsm${random_string.this.result}"
   iam_policy_name_prefix_read_write = "tftestPolicyWriteSsm${random_string.this.result}"

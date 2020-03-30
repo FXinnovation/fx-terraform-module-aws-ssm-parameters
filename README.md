@@ -36,6 +36,7 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | prefix | The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/] | `string` | n/a | yes |
 | tags | Global tags for resources | `map` | `{}` | no |
 | types | List of types for parameters. | `list(string)` | n/a | yes |
+| use\_default\_kms\_key | Use default kms\_key | `bool` | `false` | no |
 | values | List of values for parameters. | `list(string)` | n/a | yes |
 
 ## Outputs
@@ -55,10 +56,10 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | iam\_policy\_read\_write\_name | The name of the read write policy |
 | iam\_policy\_read\_write\_path | Path of the read write policy |
 | iam\_policy\_read\_write\_policy | The policy document |
-| kms\_alias\_arns | The Amazon Resource Name (ARN) of the key alias |
+| kms\_alias\_arn | The Amazon Resource Name (ARN) of the key alias |
 | kms\_alias\_target\_key\_arn | The Amazon Resource Name (ARN) of the target key identifier |
-| kms\_key\_arns | The Amazon Resource Name (ARN) of the key |
-| kms\_key\_ids | Globally unique identifier for the key |
+| kms\_key\_arn | The Amazon Resource Name (ARN) of the key |
+| kms\_key\_id | Globally unique identifier for the key |
 | names | Names of SSM Parameters |
 | types | Types of SSM parameters |
 | versions | Versions of SSM parameters |
