@@ -14,16 +14,16 @@ output "versions" {
   value = module.disable.versions
 }
 
-output "kms_key_arns" {
-  value = module.disable.kms_key_arns
+output "kms_key_arn" {
+  value = module.disable.kms_key_arn
 }
 
-output "kms_key_ids" {
-  value = module.disable.kms_key_ids
+output "kms_key_id" {
+  value = module.disable.kms_key_id
 }
 
-output "kms_alias_arns" {
-  value = module.disable.kms_alias_arns
+output "kms_alias_arn" {
+  value = module.disable.kms_alias_arn
 }
 
 output "kms_alias_target_key_arn" {

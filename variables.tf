@@ -85,6 +85,11 @@ variable "kms_key_alias_name" {
   default     = ""
 }
 
+variable "use_default_kms_key" {
+  description = "Use default kms_key"
+  default     = false
+}
+
 #####
 #  IAM Policy
 #####

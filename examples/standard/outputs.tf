@@ -14,16 +14,16 @@ output "versions" {
   value = module.standard.versions
 }
 
-output "kms_key_arns" {
-  value = module.standard.kms_key_arns
+output "kms_key_arn" {
+  value = module.standard.kms_key_arn
 }
 
-output "kms_key_ids" {
-  value = module.standard.kms_key_ids
+output "kms_key_id" {
+  value = module.standard.kms_key_id
 }
 
-output "kms_alias_arns" {
-  value = module.standard.kms_alias_arns
+output "kms_alias_arn" {
+  value = module.standard.kms_alias_arn
 }
 
 output "kms_alias_target_key_arn" {
