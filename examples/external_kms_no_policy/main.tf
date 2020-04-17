@@ -28,6 +28,7 @@ module "external_kms_no_policy" {
   source = "../../"
 
   prefix            = "tftestSsmParam${random_string.this.result}"
+  parameters_count  = 3
   names             = ["/foo", "/bar", "/baz"]
   types             = ["String", "SecureString", "StringList"]
   values            = ["foo was here", "bar was here", "baz was here"]

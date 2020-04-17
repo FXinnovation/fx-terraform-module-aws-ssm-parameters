@@ -8,6 +8,12 @@ Very important:
 It's not possible to convert `SecureString` into a `String`/`StringList` a value. To do so, SSM parameter resource must be taint/destroy first.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+
 ## Providers
 
 | Name | Version |
@@ -17,7 +23,7 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | allowed\_patterns | List of regular expression used to validate the parameter value. | `list` | `[]` | no |
 | descriptions | List of descriptions for parameters. | `list` | `[]` | no |
 | enabled | Enable this module | `bool` | `true` | no |
@@ -33,6 +39,7 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | kms\_tags | Tags that will be merged with variable tags for the kms key | `map` | `{}` | no |
 | names | List of names for parameters. | `list(string)` | n/a | yes |
 | overwrite | Overwrite an existing parameter | `bool` | `false` | no |
+| parameters\_count | Number of parameters. This value cannot be automaticly computed in terraform 0.12.x. | `number` | `0` | no |
 | prefix | The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/] | `string` | n/a | yes |
 | tags | Global tags for resources | `map` | `{}` | no |
 | types | List of types for parameters. | `list(string)` | n/a | yes |

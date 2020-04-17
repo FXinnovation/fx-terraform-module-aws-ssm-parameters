@@ -21,6 +21,12 @@ variable "prefix" {
   type        = string
 }
 
+variable "parameters_count" {
+  description = "Number of parameters. This value cannot be automaticly computed in terraform 0.12.x."
+  type        = number
+  default     = 0
+}
+
 variable "names" {
   description = "List of names for parameters."
   type        = list(string)

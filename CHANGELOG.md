@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0
+
+* fix: Add `parameters_count` variable. You must update you module with this variable, otherwise, no SSM paramters will be created. This fix a terraform 0.12 pre-processor issue.
+
 ## 1.1.0
 
 * feat: allow default KMS key

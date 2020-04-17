@@ -15,6 +15,7 @@ module "standard" {
   source = "../../"
 
   prefix                            = "tftestSsmParam/${random_string.this.result}"
+  parameters_count                  = 3
   names                             = ["/foo", "/bar", "/baz"]
   types                             = ["String", "SecureString", "StringList"]
   values                            = ["foo was here", "bar war here", "baz was here"]

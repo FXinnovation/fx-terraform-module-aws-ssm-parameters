@@ -3,7 +3,7 @@
 ####
 
 resource "aws_ssm_parameter" "overwrite" {
-  count = var.enabled && var.overwrite ? length(var.names) : 0
+  count = var.enabled && var.overwrite ? var.parameters_count : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
@@ -23,7 +23,7 @@ resource "aws_ssm_parameter" "overwrite" {
 }
 
 resource "aws_ssm_parameter" "no_overwrite" {
-  count = var.enabled && false == var.overwrite ? length(var.names) : 0
+  count = var.enabled && false == var.overwrite ? var.parameters_count : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
