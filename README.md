@@ -34,7 +34,6 @@ It's not possible to convert `SecureString` into a `String`/`StringList` a value
 | kms\_key\_alias\_name | Alias of the kms key if toggle kms\_key\_create is set | `string` | `""` | no |
 | kms\_key\_arn | ARN of the kms key if toggle kms\_key\_create is disable. | `string` | `""` | no |
 | kms\_key\_create | Create a kms key for secure string parameters. | `bool` | `false` | no |
-| kms\_key\_id | ID of the kms key if toggle kms\_key\_create is disable. | `string` | `""` | no |
 | kms\_key\_name | Name of the kms key if toggle kms\_key\_create is set | `string` | `""` | no |
 | kms\_tags | Tags that will be merged with variable tags for the kms key | `map` | `{}` | no |
 | names | List of names for parameters. | `list(string)` | n/a | yes |

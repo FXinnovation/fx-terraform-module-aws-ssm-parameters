@@ -66,11 +66,6 @@ variable "kms_key_create" {
   default     = false
 }
 
-variable "kms_key_id" {
-  description = "ID of the kms key if toggle kms_key_create is disable."
-  default     = ""
-}
-
 variable "kms_key_arn" {
   description = "ARN of the kms key if toggle kms_key_create is disable."
   default     = ""
