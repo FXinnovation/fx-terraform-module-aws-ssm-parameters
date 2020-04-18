@@ -19,6 +19,7 @@ $ terraform apply
 |------|---------|
 | terraform | >= 0.12 |
 | aws | ~> 2 |
+| aws | ~>2.47 |
 
 ## Providers
 
