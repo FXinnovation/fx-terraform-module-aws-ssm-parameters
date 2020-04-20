@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1
+
+* fix: Prevent null resource on IAM policy without KMS key
+
 ## 2.0.0
 
 * fix: Add `parameters_count` variable. You must update you module with this variable, otherwise, no SSM paramters will be created. This fix a terraform 0.12 pre-processor issue.

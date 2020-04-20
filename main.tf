@@ -101,7 +101,7 @@ data "aws_iam_policy_document" "read_only" {
 }
 
 data "aws_iam_policy_document" "kms_key_read_only" {
-  count = var.enabled && var.iam_policy_create ? 1 : 0
+  count = var.enabled && var.iam_policy_create && ! var.use_default_kms_key ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
@@ -123,6 +123,7 @@ data "aws_iam_policy_document" "read_write" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
 
   source_json = local.kms_key_needed ? element(concat(data.aws_iam_policy_document.kms_key_read_write.*.json, [""]), 0) : null
+
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
 
@@ -147,7 +148,7 @@ data "aws_iam_policy_document" "read_write" {
 }
 
 data "aws_iam_policy_document" "kms_key_read_write" {
-  count = var.enabled && var.iam_policy_create ? 1 : 0
+  count = var.enabled && var.iam_policy_create && ! var.use_default_kms_key ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
@@ -165,7 +166,6 @@ data "aws_iam_policy_document" "kms_key_read_write" {
     resources = [var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn]
   }
 }
-
 
 resource "aws_iam_policy" "read_only" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
