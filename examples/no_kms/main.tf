@@ -15,6 +15,7 @@ module "no_kms" {
   source = "../../"
 
   prefix                            = "tftestSsmParam/${random_string.this.result}"
+  parameters_count                  = 2
   names                             = ["/foo", "/bar"]
   types                             = ["String", "SecureString"]
   values                            = ["foo was here", "bar was here"]

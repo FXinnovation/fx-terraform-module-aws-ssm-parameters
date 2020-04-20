@@ -21,6 +21,12 @@ variable "prefix" {
   type        = string
 }
 
+variable "parameters_count" {
+  description = "Number of parameters. This value cannot be automaticly computed in terraform 0.12.x."
+  type        = number
+  default     = 0
+}
+
 variable "names" {
   description = "List of names for parameters."
   type        = list(string)
@@ -58,11 +64,6 @@ variable "allowed_patterns" {
 variable "kms_key_create" {
   description = "Create a kms key for secure string parameters."
   default     = false
-}
-
-variable "kms_key_id" {
-  description = "ID of the kms key if toggle kms_key_create is disable."
-  default     = ""
 }
 
 variable "kms_key_arn" {

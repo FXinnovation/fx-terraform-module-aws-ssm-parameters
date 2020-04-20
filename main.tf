@@ -3,14 +3,14 @@
 ####
 
 resource "aws_ssm_parameter" "overwrite" {
-  count = var.enabled && var.overwrite ? length(var.names) : 0
+  count = var.enabled && var.overwrite ? var.parameters_count : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
   type        = element(var.types, count.index)
   value       = element(var.values, count.index)
 
-  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id != "" ? var.kms_key_id : null : null
+  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
   overwrite       = true
   allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
 
@@ -23,14 +23,14 @@ resource "aws_ssm_parameter" "overwrite" {
 }
 
 resource "aws_ssm_parameter" "no_overwrite" {
-  count = var.enabled && false == var.overwrite ? length(var.names) : 0
+  count = var.enabled && false == var.overwrite ? var.parameters_count : 0
 
   name        = "/${var.prefix}${element(var.names, count.index)}"
   description = element(concat(var.descriptions, [""]), count.index)
   type        = element(var.types, count.index)
   value       = element(var.values, count.index)
 
-  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id != "" ? var.kms_key_id : null : null
+  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
   allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
 
   lifecycle {
