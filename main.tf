@@ -101,7 +101,7 @@ data "aws_iam_policy_document" "read_only" {
 }
 
 data "aws_iam_policy_document" "kms_key_read_only" {
-  count = var.enabled && var.iam_policy_create && ! var.use_default_kms_key ? 1 : 0
+  count = var.enabled && var.iam_policy_create && var.use_default_kms_key ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
@@ -148,7 +148,7 @@ data "aws_iam_policy_document" "read_write" {
 }
 
 data "aws_iam_policy_document" "kms_key_read_write" {
-  count = var.enabled && var.iam_policy_create && ! var.use_default_kms_key ? 1 : 0
+  count = var.enabled && var.iam_policy_create && var.use_default_kms_key ? 1 : 0
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterKMSAccess"
