@@ -9,8 +9,7 @@ module "disable" {
   source = "../../"
 
   enabled = false
-  prefix  = ""
-  names   = []
-  types   = []
   values  = []
+  types   = []
+  names   = []
 }

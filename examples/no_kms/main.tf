@@ -20,6 +20,7 @@ module "no_kms" {
   types                             = ["String", "SecureString"]
   values                            = ["foo was here", "bar was here"]
   descriptions                      = ["Know if foo was there", "Know if bar was there"]
+  overwrites                        = [true]
   kms_key_create                    = false
   use_default_kms_key               = true
   iam_policy_create                 = true

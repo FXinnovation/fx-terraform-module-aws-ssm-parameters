@@ -27,14 +27,17 @@ resource "aws_kms_alias" "this" {
 module "external_kms_no_policy" {
   source = "../../"
 
-  prefix            = "tftestSsmParam${random_string.this.result}"
-  parameters_count  = 3
-  names             = ["/foo", "/bar", "/baz"]
-  types             = ["String", "SecureString", "StringList"]
-  values            = ["foo was here", "bar was here", "baz was here"]
-  kms_key_create    = false
-  kms_key_arn       = aws_kms_key.this.arn
-  iam_policy_create = true
+  prefix                            = "tftestSsmParam${random_string.this.result}"
+  parameters_count                  = 3
+  names                             = ["/foo", "/bar", "/baz"]
+  types                             = ["String", "SecureString", "StringList"]
+  values                            = ["foo was here", "bar was here", "baz was here"]
+  overwrites                        = [false, true, false]
+  kms_key_create                    = false
+  kms_key_arn                       = aws_kms_key.this.arn
+  iam_policy_create                 = true
+  iam_policy_name_prefix_read_only  = "tftest"
+  iam_policy_name_prefix_read_write = "tftest"
 
   tags = {
     Name = "tftest"

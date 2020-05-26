@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.0 / 2020-05-26
+
+* feat: (BREAKING) Rename overwrite and add overwrites variables
+
 ## 2.0.1
 
 * fix: Prevent null resource on IAM policy without KMS key

@@ -19,7 +19,8 @@ module "overwrite" {
   names                             = ["/foo", "/bar", "/baz"]
   types                             = ["String", "SecureString", "StringList"]
   values                            = ["foo was here", "bar war here", "baz was here"]
-  overwrite                         = true
+  overwrites                        = [true, false, true]
+  ignore_changes_on_value           = true
   kms_key_create                    = true
   kms_key_name                      = "tftestSsmKmsKey${random_string.this.result}"
   kms_key_alias_name                = "tftestKmsKeySsm${random_string.this.result}"

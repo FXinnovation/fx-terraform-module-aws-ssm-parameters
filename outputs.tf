@@ -2,8 +2,8 @@ output "arns" {
   description = "ARNs of SSM Parameters"
   value = compact(
     concat(
-      aws_ssm_parameter.overwrite.*.arn,
-      aws_ssm_parameter.no_overwrite.*.arn,
+      aws_ssm_parameter.do_not_ignore_changes_on_value.*.arn,
+      aws_ssm_parameter.ignore_changes_on_value.*.arn,
       [""],
     ),
   )
@@ -13,8 +13,8 @@ output "names" {
   description = "Names of SSM Parameters"
   value = compact(
     concat(
-      aws_ssm_parameter.overwrite.*.name,
-      aws_ssm_parameter.no_overwrite.*.name,
+      aws_ssm_parameter.do_not_ignore_changes_on_value.*.name,
+      aws_ssm_parameter.ignore_changes_on_value.*.name,
       [""],
     ),
   )
@@ -24,8 +24,8 @@ output "types" {
   description = "Types of SSM parameters"
   value = compact(
     concat(
-      aws_ssm_parameter.overwrite.*.type,
-      aws_ssm_parameter.no_overwrite.*.type,
+      aws_ssm_parameter.do_not_ignore_changes_on_value.*.type,
+      aws_ssm_parameter.ignore_changes_on_value.*.type,
       [""],
     )
   )
@@ -35,8 +35,8 @@ output "versions" {
   description = "Versions of SSM parameters"
   value = compact(
     concat(
-      aws_ssm_parameter.overwrite.*.version,
-      aws_ssm_parameter.no_overwrite.*.version,
+      aws_ssm_parameter.do_not_ignore_changes_on_value.*.version,
+      aws_ssm_parameter.ignore_changes_on_value.*.version,
       [""],
     )
   )

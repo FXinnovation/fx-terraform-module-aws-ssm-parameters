@@ -18,7 +18,7 @@ variable "tags" {
 
 variable "prefix" {
   description = "The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/]"
-  type        = string
+  default     = ""
 }
 
 variable "parameters_count" {
@@ -34,6 +34,7 @@ variable "names" {
 
 variable "descriptions" {
   description = "List of descriptions for parameters."
+  type        = list(string)
   default     = []
 }
 
@@ -47,8 +48,14 @@ variable "values" {
   type        = list(string)
 }
 
-variable "overwrite" {
-  description = "Overwrite an existing parameter"
+variable "overwrites" {
+  description = "Ordered list of boolean to say whether if terraform should overwrite an existing parameter not managed by terraform.( `ignore_changes_on_value` should then be used to manage the update behavior)."
+  type        = list(bool)
+  default     = []
+}
+
+variable "ignore_changes_on_value" {
+  description = "Whether or not to ignore changes made manually on the value. Applies to all specified parameters. If set to `true`, terraform will never update the value."
   default     = false
 }
 
