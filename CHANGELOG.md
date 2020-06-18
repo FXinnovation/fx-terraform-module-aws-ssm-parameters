@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## 3.0.0 / 2020-05-26
+## 3.0.1
+
+* fix: typo in versions.tf to be usable with terraform 0.13
+
+## 3.0.0
 
 * feat: (BREAKING) Rename overwrite and add overwrites variables
 
