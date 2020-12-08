@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.0.2
+
+* fix: in versions.tf change from `~> 2.47` to `>= 2.47, < 4.0`
+* chore: bump pre-commit hooks
+
 ## 3.0.1
 
 * fix: typo in versions.tf to be usable with terraform 0.13
