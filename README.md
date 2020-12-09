@@ -8,13 +8,13 @@ Generic module to creates SSM Parameters for AWS.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
-| aws | ~> 2.47 |
+| aws | >= 2.47, < 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.47 |
+| aws | >= 2.47, < 4.0 |
 
 ## Inputs
 
