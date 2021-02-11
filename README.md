@@ -24,8 +24,8 @@ Generic module to creates SSM Parameters for AWS.
 | descriptions | List of descriptions for parameters. | `list(string)` | `[]` | no |
 | enabled | Enable this module | `bool` | `true` | no |
 | iam\_policy\_create | Create read only and read write policy to get an access to SSM paramters | `bool` | `false` | no |
-| iam\_policy\_name\_prefix\_read\_only | Name of the IAM read only access to SSM parameter policy | `string` | `""` | no |
-| iam\_policy\_name\_prefix\_read\_write | Name of the IAM read write access to SSM parameter policy | `string` | `""` | no |
+| iam\_policy\_name\_prefix\_read\_only | Name of the IAM read only access to SSM parameter policy | `string` | `null` | no |
+| iam\_policy\_name\_prefix\_read\_write | Name of the IAM read write access to SSM parameter policy | `string` | `null` | no |
 | iam\_policy\_path | Path in which to create the policies. | `string` | `"/"` | no |
 | ignore\_changes\_on\_value | Whether or not to ignore changes made manually on the value. Applies to all specified parameters. If set to `true`, terraform will never update the value. | `bool` | `false` | no |
 | kms\_key\_alias\_name | Alias of the kms key if toggle kms\_key\_create is set | `string` | `""` | no |
