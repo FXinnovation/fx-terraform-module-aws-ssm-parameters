@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.3
+* fix: set default to null instead of empty string
+* chore: bump pre-commit
+
 ## 3.0.2
 
 * fix: in versions.tf change from `~> 2.47` to `>= 2.47, < 4.0`
