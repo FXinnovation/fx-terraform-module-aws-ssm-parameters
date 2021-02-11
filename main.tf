@@ -47,7 +47,7 @@ resource "aws_ssm_parameter" "ignore_changes_on_value" {
 }
 
 resource "aws_kms_key" "this" {
-  count = var.enabled && var.kms_key_create && ! var.use_default_kms_key ? 1 : 0
+  count = var.enabled && var.kms_key_create && !var.use_default_kms_key ? 1 : 0
 
   description = "KMS Key for ${var.prefix} SSM secure strings parameters encryption."
 
@@ -64,7 +64,7 @@ resource "aws_kms_key" "this" {
 }
 
 resource "aws_kms_alias" "this" {
-  count = var.enabled && var.kms_key_create && ! var.use_default_kms_key ? 1 : 0
+  count = var.enabled && var.kms_key_create && !var.use_default_kms_key ? 1 : 0
 
   name          = "alias/${var.kms_key_alias_name}"
   target_key_id = aws_kms_key.this[0].key_id
