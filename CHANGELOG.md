@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 3.0.3
+* fix: describe type for name prefix
 * fix: set default to null instead of empty string
 * chore: bump pre-commit
 
