@@ -109,12 +109,12 @@ variable "iam_policy_create" {
 
 variable "iam_policy_name_prefix_read_only" {
   description = "Name of the IAM read only access to SSM parameter policy"
-  default     = ""
+  default     = null
 }
 
 variable "iam_policy_name_prefix_read_write" {
   description = "Name of the IAM read write access to SSM parameter policy"
-  default     = ""
+  default     = null
 }
 
 variable "iam_policy_path" {
