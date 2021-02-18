@@ -2,6 +2,7 @@
 
 ## 3.0.4
 
+* fix: count on `data "aws_iam_policy_document" "kms_key_*"`, don't run when `! var.use_default_kms_key`
 * fix: change version constraint for aws provider (only `>= 2.47`)
 * chore: for examples, move providers versions to `versions.tf`
 * chore: for examples, move providers to `providers.tf`
