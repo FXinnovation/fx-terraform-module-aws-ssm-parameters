@@ -8,13 +8,28 @@ Generic module to creates SSM Parameters for AWS.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
-| aws | >= 2.47, < 4.0 |
+| aws | >= 2.47 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.47, < 4.0 |
+| aws | >= 2.47 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/data-sources/caller_identity) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/iam_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/data-sources/iam_policy_document) |
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_key) |
+| [aws_ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/ssm_parameter) |
 
 ## Inputs
 
@@ -66,5 +81,4 @@ Generic module to creates SSM Parameters for AWS.
 | names | Names of SSM Parameters |
 | types | Types of SSM parameters |
 | versions | Versions of SSM parameters |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

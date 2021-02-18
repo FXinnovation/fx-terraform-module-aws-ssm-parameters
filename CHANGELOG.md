@@ -1,6 +1,13 @@
 # CHANGELOG
 
+## 3.0.4
+
+* fix: change version constraint for aws provider (only `>= 2.47`)
+* chore: for examples, move providers versions to `versions.tf`
+* chore: for examples, move providers to `providers.tf`
+
 ## 3.0.3
+
 * fix: describe type for name prefix
 * fix: set default to null instead of empty string
 * chore: bump pre-commit
