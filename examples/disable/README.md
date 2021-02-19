@@ -18,12 +18,21 @@ $ terraform apply
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
-| aws | ~> 2 |
-| aws | ~> 2.47 |
+| aws | >= 2.47 |
 
 ## Providers
 
 No provider.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| disable | ../../ |  |
+
+## Resources
+
+No resources.
 
 ## Inputs
 
@@ -56,5 +65,4 @@ No provider.
 | names | n/a |
 | types | n/a |
 | versions | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

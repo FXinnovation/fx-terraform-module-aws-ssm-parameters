@@ -18,15 +18,29 @@ $ terraform apply
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
-| aws | ~> 2 |
-| aws | ~> 2.47 |
+| aws | >= 2.47 |
+| random | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2 ~> 2.47 |
-| random | n/a |
+| aws | >= 2.47 |
+| random | >= 3.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| external_kms_no_policy | ../../ |  |
+
+## Resources
+
+| Name |
+|------|
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_key) |
+| [random_string](https://registry.terraform.io/providers/hashicorp/random/3.0/docs/resources/string) |
 
 ## Inputs
 
@@ -59,5 +73,4 @@ $ terraform apply
 | names | n/a |
 | types | n/a |
 | versions | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
