@@ -12,7 +12,7 @@ resource "aws_ssm_parameter" "overwrite" {
 
   key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id : ""
   overwrite       = true
-  allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
+  allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index) == "" ? null : element(concat(var.allowed_patterns, [""]), count.index)
 
   tags = merge(
     {
@@ -31,7 +31,7 @@ resource "aws_ssm_parameter" "no_overwrite" {
   value       = element(var.values, count.index)
 
   key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.id, [""]), 0) : var.kms_key_id : ""
-  allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
+  allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index) == "" ? null : element(concat(var.allowed_patterns, [""]), count.index)
 
   lifecycle {
     ignore_changes = [value]
