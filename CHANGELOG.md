@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.5
+===============================
+ * chore: upgrade terraform version and aws version.
+
 ## 3.0.4
 
 * fix: count on `data "aws_iam_policy_document" "kms_key_*"`, don't run when `! var.use_default_kms_key`

@@ -17,8 +17,8 @@ $ terraform apply
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 2.47 |
+| terraform | >= 0.14 |
+| aws | >= 3.0 |
 | random | >= 3.0 |
 
 ## Providers
@@ -37,7 +37,7 @@ $ terraform apply
 
 | Name |
 |------|
-| [random_string](https://registry.terraform.io/providers/hashicorp/random/3.0/docs/resources/string) |
+| [random_string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) |
 
 ## Inputs
 

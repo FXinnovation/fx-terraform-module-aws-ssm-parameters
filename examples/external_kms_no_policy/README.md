@@ -38,9 +38,9 @@ $ terraform apply
 
 | Name |
 |------|
-| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_alias) |
-| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_key) |
-| [random_string](https://registry.terraform.io/providers/hashicorp/random/3.0/docs/resources/string) |
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) |
+| [random_string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) |
 
 ## Inputs
 
