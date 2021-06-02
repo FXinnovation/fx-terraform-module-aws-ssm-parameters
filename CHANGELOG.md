@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## 3.0.5
+## 4.0.0
 ===============================
- * chore: upgrade terraform version and aws version.
+ * chore (BREAKING): upgrade terraform version and aws version.
 
 ## 3.0.4
 
