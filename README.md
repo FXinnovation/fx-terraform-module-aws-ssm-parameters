@@ -7,14 +7,14 @@ Generic module to creates SSM Parameters for AWS.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 2.47 |
+| terraform | >= 0.14 |
+| aws | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.47 |
+| aws | >= 3.0 |
 
 ## Modules
 
@@ -24,12 +24,12 @@ No Modules.
 
 | Name |
 |------|
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/data-sources/caller_identity) |
-| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/iam_policy) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/data-sources/iam_policy_document) |
-| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_alias) |
-| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/kms_key) |
-| [aws_ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/2.47/docs/resources/ssm_parameter) |
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) |
+| [aws_ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) |
 
 ## Inputs
 
