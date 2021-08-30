@@ -1,8 +1,23 @@
+
 # CHANGELOG
 
+## 5.0.0
+
+* (BREAKING) chore: pins pre-commit-hooks to v4.0.1
+* feat: add pre-commit-afcmf (v0.1.2)
+* chore: pins pre-commit-terraform to v1.50.0
+* chore: pins terraform to >= 0.14
+* chore: pins aws provider to >= 3.5
+* refactor: move example standard -> default
+    for more compliance with the others modules.
+* chore: bumps terraform + providers versions in examples:
+  - pins terraform to >= 0.14
+  - pins aws provider to >= 3.5
+  - pins random provider to >= 3.1
+
 ## 4.0.0
-===============================
- * chore (BREAKING): upgrade terraform version and aws version.
+
+* chore (BREAKING): upgrade terraform version and aws version.
 
 ## 3.0.4
 
