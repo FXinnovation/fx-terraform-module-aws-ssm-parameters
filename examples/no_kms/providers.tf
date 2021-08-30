@@ -4,5 +4,4 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
-provider "random" {
-}
+provider "random" {}
