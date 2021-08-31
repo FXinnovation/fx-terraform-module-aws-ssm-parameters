@@ -12,6 +12,7 @@ variable "tags" {
   default     = {}
 }
 
+
 #####
 # SSM parameters
 #####
@@ -64,6 +65,7 @@ variable "allowed_patterns" {
   default     = []
 }
 
+
 #####
 # KMS key
 #####
@@ -98,8 +100,9 @@ variable "use_default_kms_key" {
   default     = false
 }
 
+
 #####
-#  IAM Policy
+# IAM Policy
 #####
 
 variable "iam_policy_create" {

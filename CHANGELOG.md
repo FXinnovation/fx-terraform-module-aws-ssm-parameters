@@ -7,13 +7,13 @@
 * feat: add pre-commit-afcmf (v0.1.2)
 * chore: pins pre-commit-terraform to v1.50.0
 * chore: pins terraform to >= 0.14
-* chore: pins aws provider to >= 3.5
+* chore: pins aws provider to >= 3.0
 * refactor: move example standard -> default
     for more compliance with the others modules.
 * chore: bumps terraform + providers versions in examples:
   - pins terraform to >= 0.14
-  - pins aws provider to >= 3.5
-  - pins random provider to >= 3.1
+  - pins aws provider to >= 3.0
+  - pins random provider to >= 3.0
 
 ## 4.0.0
 
