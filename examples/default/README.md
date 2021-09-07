@@ -1,6 +1,6 @@
-# SSM parameters Standard example
+# SSM parameters Standard exemple
 
-Create SSM parameters, the policies and without kms
+Create SSM parameters, KMS key, and the policies
 
 ## Usage
 
@@ -31,7 +31,7 @@ $ terraform apply
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_no_kms"></a> [no\_kms](#module\_no\_kms) | ../../ | n/a |
+| <a name="module_standard"></a> [standard](#module\_standard) | ../../ | n/a |
 
 ## Resources
 
