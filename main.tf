@@ -78,7 +78,7 @@ resource "aws_kms_alias" "this" {
 data "aws_iam_policy_document" "read_only" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
 
-  source_json = local.kms_key_needed ? element(concat(data.aws_iam_policy_document.kms_key_read_only.*.json, [""]), 0) : null
+  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_only.*.json, [""]) : null
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
@@ -124,7 +124,7 @@ data "aws_iam_policy_document" "kms_key_read_only" {
 data "aws_iam_policy_document" "read_write" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
 
-  source_json = local.kms_key_needed ? element(concat(data.aws_iam_policy_document.kms_key_read_write.*.json, [""]), 0) : null
+  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_write.*.json, [""]) : null
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
