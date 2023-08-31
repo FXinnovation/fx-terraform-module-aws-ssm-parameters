@@ -5,11 +5,13 @@
 variable "enabled" {
   description = "Enable this module"
   default     = true
+  type        = bool
 }
 
 variable "tags" {
   description = "Global tags for resources"
   default     = {}
+  type        = map(any)
 }
 
 
@@ -20,6 +22,7 @@ variable "tags" {
 variable "prefix" {
   description = "The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/]"
   default     = ""
+  type        = string
 }
 
 variable "parameters_count" {
@@ -58,11 +61,13 @@ variable "overwrites" {
 variable "ignore_changes_on_value" {
   description = "Whether or not to ignore changes made manually on the value. Applies to all specified parameters. If set to `true`, terraform will never update the value."
   default     = false
+  type        = bool
 }
 
 variable "allowed_patterns" {
   description = "List of regular expression used to validate the parameter value."
   default     = []
+  type        = list(string)
 }
 
 
@@ -73,31 +78,37 @@ variable "allowed_patterns" {
 variable "kms_key_create" {
   description = "Create a kms key for secure string parameters."
   default     = false
+  type        = bool
 }
 
 variable "kms_key_arn" {
   description = "ARN of the kms key if toggle kms_key_create is disable."
   default     = ""
+  type        = string
 }
 
 variable "kms_key_name" {
   description = "Name of the kms key if toggle kms_key_create is set"
   default     = ""
+  type        = string
 }
 
 variable "kms_tags" {
   description = "Tags that will be merged with variable tags for the kms key"
   default     = {}
+  type        = map(any)
 }
 
 variable "kms_key_alias_name" {
   description = "Alias of the kms key if toggle kms_key_create is set"
   default     = ""
+  type        = string
 }
 
 variable "use_default_kms_key" {
   description = "Use default kms_key"
   default     = false
+  type        = bool
 }
 
 
@@ -108,6 +119,7 @@ variable "use_default_kms_key" {
 variable "iam_policy_create" {
   description = "Create read only and read write policy to get an access to SSM paramters"
   default     = false
+  type        = bool
 }
 
 variable "iam_policy_name_prefix_read_only" {
@@ -125,4 +137,5 @@ variable "iam_policy_name_prefix_read_write" {
 variable "iam_policy_path" {
   description = "Path in which to create the policies."
   default     = "/"
+  type        = string
 }

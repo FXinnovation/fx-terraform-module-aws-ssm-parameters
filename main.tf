@@ -11,7 +11,7 @@ resource "aws_ssm_parameter" "do_not_ignore_changes_on_value" {
   value       = element(var.values, count.index)
   overwrite   = element(concat(var.overwrites, [null]), count.index)
 
-  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
+  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this[*].arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
   allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
 
   tags = merge(
@@ -31,7 +31,7 @@ resource "aws_ssm_parameter" "ignore_changes_on_value" {
   value       = element(var.values, count.index)
   overwrite   = element(concat(var.overwrites, [null]), count.index)
 
-  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
+  key_id          = element(var.types, count.index) == "SecureString" ? var.kms_key_create ? element(concat(aws_kms_key.this[*].arn, [""]), 0) : var.kms_key_arn != "" ? var.kms_key_arn : null : null
   allowed_pattern = element(concat(var.allowed_patterns, [""]), count.index)
 
   lifecycle {
@@ -78,7 +78,7 @@ resource "aws_kms_alias" "this" {
 data "aws_iam_policy_document" "read_only" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
 
-  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_only.*.json, [""]) : null
+  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_only[*].json, [""]) : null
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
@@ -117,14 +117,14 @@ data "aws_iam_policy_document" "kms_key_read_only" {
       "kms:DescribeKey",
     ]
 
-    resources = [var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn]
+    resources = [var.kms_key_create ? element(concat(aws_kms_key.this[*].arn, [""]), 0) : var.kms_key_arn]
   }
 }
 
 data "aws_iam_policy_document" "read_write" {
   count = var.enabled && var.iam_policy_create ? 1 : 0
 
-  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_write.*.json, [""]) : null
+  source_policy_documents = local.kms_key_needed ? concat(data.aws_iam_policy_document.kms_key_read_write[*].json, [""]) : null
 
   statement {
     sid = "Allow${replace(replace(var.prefix, "-", ""), "/", "")}SSMParameterAccess"
@@ -165,7 +165,7 @@ data "aws_iam_policy_document" "kms_key_read_write" {
       "kms:DescribeKey",
     ]
 
-    resources = [var.kms_key_create ? element(concat(aws_kms_key.this.*.arn, [""]), 0) : var.kms_key_arn]
+    resources = [var.kms_key_create ? element(concat(aws_kms_key.this[*].arn, [""]), 0) : var.kms_key_arn]
   }
 }
 
@@ -174,7 +174,7 @@ resource "aws_iam_policy" "read_only" {
 
   name_prefix = var.iam_policy_name_prefix_read_only
   path        = var.iam_policy_path
-  policy      = element(concat(data.aws_iam_policy_document.read_only.*.json, [""]), 0)
+  policy      = element(concat(data.aws_iam_policy_document.read_only[*].json, [""]), 0)
   description = "Read only policy to get access to ${var.prefix} SSM parameters."
 }
 
@@ -183,6 +183,6 @@ resource "aws_iam_policy" "read_write" {
 
   name_prefix = var.iam_policy_name_prefix_read_write
   path        = var.iam_policy_path
-  policy      = element(concat(data.aws_iam_policy_document.read_write.*.json, [""]), 0)
+  policy      = element(concat(data.aws_iam_policy_document.read_write[*].json, [""]), 0)
   description = "Read write policy to get access to ${var.prefix} SSM parameters."
 }

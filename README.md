@@ -40,7 +40,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allowed_patterns"></a> [allowed\_patterns](#input\_allowed\_patterns) | List of regular expression used to validate the parameter value. | `list` | `[]` | no |
+| <a name="input_allowed_patterns"></a> [allowed\_patterns](#input\_allowed\_patterns) | List of regular expression used to validate the parameter value. | `list(string)` | `[]` | no |
 | <a name="input_descriptions"></a> [descriptions](#input\_descriptions) | List of descriptions for parameters. | `list(string)` | `[]` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Enable this module | `bool` | `true` | no |
 | <a name="input_iam_policy_create"></a> [iam\_policy\_create](#input\_iam\_policy\_create) | Create read only and read write policy to get an access to SSM paramters | `bool` | `false` | no |
@@ -52,12 +52,12 @@ No modules.
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | ARN of the kms key if toggle kms\_key\_create is disable. | `string` | `""` | no |
 | <a name="input_kms_key_create"></a> [kms\_key\_create](#input\_kms\_key\_create) | Create a kms key for secure string parameters. | `bool` | `false` | no |
 | <a name="input_kms_key_name"></a> [kms\_key\_name](#input\_kms\_key\_name) | Name of the kms key if toggle kms\_key\_create is set | `string` | `""` | no |
-| <a name="input_kms_tags"></a> [kms\_tags](#input\_kms\_tags) | Tags that will be merged with variable tags for the kms key | `map` | `{}` | no |
+| <a name="input_kms_tags"></a> [kms\_tags](#input\_kms\_tags) | Tags that will be merged with variable tags for the kms key | `map(any)` | `{}` | no |
 | <a name="input_names"></a> [names](#input\_names) | List of names for parameters. | `list(string)` | n/a | yes |
 | <a name="input_overwrites"></a> [overwrites](#input\_overwrites) | Ordered list of boolean to say whether if terraform should overwrite an existing parameter not managed by terraform.( `ignore_changes_on_value` should then be used to manage the update behavior). | `list(bool)` | `[]` | no |
 | <a name="input_parameters_count"></a> [parameters\_count](#input\_parameters\_count) | Number of parameters. This value cannot be automaticly computed in terraform 0.12.x. | `number` | `0` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | The prefix to be used for every SSM Parameters. The prefix must match [A-Za-z0-9/] | `string` | `""` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Global tags for resources | `map` | `{}` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global tags for resources | `map(any)` | `{}` | no |
 | <a name="input_types"></a> [types](#input\_types) | List of types for parameters. | `list(string)` | n/a | yes |
 | <a name="input_use_default_kms_key"></a> [use\_default\_kms\_key](#input\_use\_default\_kms\_key) | Use default kms\_key | `bool` | `false` | no |
 | <a name="input_values"></a> [values](#input\_values) | List of values for parameters. | `list(string)` | n/a | yes |
